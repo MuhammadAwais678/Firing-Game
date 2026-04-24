@@ -20,6 +20,7 @@ public class WeaponController : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public GameObject bulletHole;
     public AudioClip fireSound;
+    public AudioClip reloadSound;
     public float reloadTime = 0.5f;
 
 
@@ -65,12 +66,14 @@ public class WeaponController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R) && !isReloading && currentBullets < magazineSize && maxBullets > 0)
         {
             StartCoroutine(Reload());
+            source.PlayOneShot(reloadSound);
             return;
         }
 
         if(currentBullets <= 0 && maxBullets > 0)
         {
             StartCoroutine(Reload());
+            source.PlayOneShot(reloadSound);
             return;
         }
 
